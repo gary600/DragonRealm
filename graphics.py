@@ -1,0 +1,121 @@
+
+import adds
+def displayIntro():
+	print("                                              /--------------\\")
+	adds.pause()
+	print("==============================================|-DRAGON REALM-|===============================================")
+	adds.pause()
+	print("                                              |by Gary Bailey|")
+	adds.pause()
+	print("                                              \--------------/")
+	adds.pause()
+	print("   You are a valiant knight who has been sent on a quest by the Monarch to destroy the wicked Dragon King.")
+	adds.pause()
+	print("   You must choose which paths to follow. Some may bring you to the King, some may give you weapons...")
+	adds.pause()
+	print("                              ...but others may send you to your death.")
+	adds.pause()
+	print("              You must choose wisely, for the fate of the entire kingdom lies in your hands...")
+	adds.pause()
+	print("=============================================================================================================")
+	adds.pause()
+def showEnd(ending):
+	global sword
+	global shield
+	global scroll
+	global energy
+	global choicelog
+	print("===========================================================================================================================")
+	adds.pause()
+	print("                  /------------------------\  /-\           /-\  /---------------\\")
+	adds.pause()
+	print("                  \----------\  /----------/  | |           | |  |  -------------/")
+	adds.pause()
+	print("                             |  |             | |           | |  | /")
+	adds.pause()
+	print("                             |  |             | \           / |  | \\")
+	adds.pause()
+	print("                             |  |             |  -----------  |  |  ---------\\")
+	adds.pause()
+	print("                             |  |             |  -----------  |  |  ---------/")
+	adds.pause()
+	print("                             |  |             | /           \ |  | /")
+	adds.pause()
+	print("                             |  |             | |           | |  | \\")
+	adds.pause()
+	print("                             |  |             | |           | |  |  -------------\\")
+	adds.pause()
+	print("                             \--/             \-/           \-/  \---------------/")
+	adds.pause()
+	print()
+	adds.pause()
+	print("                           /---------------\      /-\      /-\       /-\\")
+	adds.pause()
+	print("                           |  -------------/      |  \     | |       |  \\")
+	adds.pause()
+	print("                           | /                    | \ \    | |       |   \\")
+	adds.pause()
+	print("                           | \                    | |\ \   | |       | |\ \\")
+	adds.pause()
+	print("                           |  ---------\          | | \ \  | |       | | \ \\")
+	adds.pause()
+	print("                           |  ---------/          | |  \ \ | |       | | / /")
+	adds.pause()
+	print("                           | /                    | |   \ \| |       | |/ /")
+	adds.pause()
+	print("                           | \                    | |    \ \ |       |   /")
+	adds.pause()
+	print("                           |  -------------\      | |     \  |       |  /")
+	adds.pause()
+	print("                           \---------------/      \-/      \-/       \-/")
+	adds.pause()
+	print()
+	if (ending == "bad"):
+		adds.pause()
+		print("            When he got the news of the failiure of your quest, the Monarch feared for his and each of his kingdom's")
+		adds.pause()
+		print("            inhabitants' lives. The Dragon King noticed the deed of his servant and promoted him to Deputy, and then")
+		adds.pause()
+		print("                                     the dragons invaded and fried the kingdom.")
+		adds.pause()
+		print("                                               *sad trombone*")
+	elif (ending == "good"):
+		adds.pause()
+		print("            After vanquishing the Dragon King, you return to the kingdom. The monarch is pleased, for there would be")
+		adds.pause()
+		print("                                        no more people being spontaneously eaten.")
+	print()
+	print("Would you like to try again? (y or n)")
+	option = adds.getch()
+	if (option == 'y'):
+		choicelog = [0,0,0,0]
+		sword = 0
+		shield = 0
+		scroll = 0
+		energy = 5
+	else:
+		raise SystemExit
+def draw(obj):
+	if (obj == "sword"):
+		print("   /\\")
+		print("   ||")
+		print("   ||")
+		print("   ||")
+		print("   ||")
+		print("   ||")
+		print("|==||==|")
+		print("   ||")
+		print("   ||")
+		print("  (==)")
+	elif (obj == "shield"):
+		print("/----\\")
+		print("|****|")
+		print("\----/")
+	elif (obj == "scroll"):
+		print("------------")
+		print("| don't do |")
+		print("|  1-2-4-3 |")
+		print("|and always|")
+		print("|trust a   |")
+		print("|scroll... |")
+		print("------------")
