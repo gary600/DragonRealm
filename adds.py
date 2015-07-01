@@ -1,3 +1,5 @@
+
+import time
 import os
 #Getch() Import
 # Getch for Linux, processes the key inputs
