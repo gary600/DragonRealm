@@ -1,75 +1,25 @@
-
 import random
 import os
 import pickle
 import graphics
 import adds
-import areas
 global sword
 global shield
 global scroll
 global energy
 global choicelog
 global save
-global key
-global wand
 pathdescripts = ["is green and lush with a small road.","has brown, dry grass littered with fallen trees.","leads toward a mountain that towers over the clouds.","leads toward a small hill in the distance.","wanders aimlessy through trees. The light fades as the trees grow thicker.","is hard to see as it is on very swampy ground and there are lots of big puddles that obscure the way.","is very rocky and there are points where you would have to scramble over boulders the size of a horse to find the  next part."]
 nums = ["1","2","3","4","5","6","7","8","9","0"]
 chances = [1,1,1,1,1,1,1,2,2,2,3]
 chestchances = [1,1,2,2,3]
 choicelog = [0,0,0,0]
-wand = 0
-key = 0
+
 sword = 0
 shield = 0
 scroll = 0
 energy = 5
-def showInventory():
-	print("==========INVENTORY==========")
-	if (sword == 1):
-		print("You have a sword.")
-		graphics.draw("sword")
-	if (shield == 1):
-		print("You have a shield.")
-		graphics.draw("shield")
-	if (scroll == 1):
-		print("You have a scroll that says, \"Don't do 1-2-4-3\".")
-		graphics.draw("scroll")
-	if (key == 1):
-		print("You have a key.")
-		graphics.draw("key")
-	print("You have", energy, "energy.")
-def startArea():
-	areanames = ["Road","Trees","Mountain","Hill","Forest","Swamp","Rocks"]
-	print("You are in the starting area.")
-	print("There are seven paths.")
-	print()
-	print("The first is green and lush with a small road.")
-	print("The second has brown, dry grass littered with fallen trees.")
-	print("The third leads toward a mountain that towers over the clouds.")
-	print("The fourth leads toward a small hill in the distance.")
-	print("The fifth wanders aimlessy through trees. The light fades as the trees grow thicker.")
-	print("The sixth is hard to see as it is on very swampy ground and there are lots of big puddles that obscure the way.")
-	print("The seventh is very rocky and there are points where you would have to scramble over boulders the size of a horse to find the  next part.")
-	print()
-	print("Make your selection.")
-	x = adds.getch()
-	print("Are you sure you want to enter the", areanames[int(x)],"area? (y or n)")
-	y = adds.getch()
-	if (x == '1') and (y == 'y'):
-		return 1
-	elif (x == '2') and (y == 'y'):
-		return 2
-	elif (x == '3') and (y == 'y'):
-		return 3
-	elif (x == '4') and (y == 'y'):
-		return 4
-	elif (x == '5') and (y == 'y'):
-		return 5
-	elif (x == '6') and (y == 'y'):
-		return 6
-	elif (x == '7') and (y == 'y'):
-		return 7
+
 def askLoad():
 	global save
 	global sword
@@ -255,16 +205,16 @@ while True:
 		if (energy <= 0):
 			print("You drop dead of exhaustion.")
 			graphics.showEnd("bad")
-		showInventory()
-		path = startArea()
-#		choicelog[0] = choicelog[1]
-#		choicelog[1] = choicelog[2]
-#		choicelog[2] = choicelog[3]
-#		choicelog[3] = path[0]
-#		print(choicelog)
-#		if (choicelog == [1,2,4,3]) and (scroll == 1):
-#			kingDragon(path[1])
-		areas.select(path)
+		
+		path = askPath()
+		choicelog[0] = choicelog[1]
+		choicelog[1] = choicelog[2]
+		choicelog[2] = choicelog[3]
+		choicelog[3] = path[0]
+		print(choicelog)
+		if (choicelog == [1,2,4,3]) and (scroll == 1):
+			kingDragon(path[1])
+		findTreasure(path[1])
 		savestuff = (sword, shield, scroll, energy)
 #		with (open("DragonRealm-data/save.p", "wb")) as outfile:
 #			pickle.dump(savestuff, outfile)
