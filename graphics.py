@@ -1,4 +1,4 @@
-
+import DragonRealm
 import adds
 def displayIntro():
 	print("                                              /--------------\\")
@@ -25,7 +25,7 @@ def showEnd(ending):
 	global scroll
 	global energy
 	global choicelog
-	print("===========================================================================================================================")
+	print("====================================================================================================================")
 	adds.pause()
 	print("                  /------------------------\  /-\           /-\  /---------------\\")
 	adds.pause()
@@ -72,29 +72,20 @@ def showEnd(ending):
 	print()
 	if (ending == "bad"):
 		adds.pause()
-		print("            When he got the news of the failiure of your quest, the Monarch feared for his and each of his kingdom's")
+		print("         When he got the news of the failure of your quest, the Monarch feared for his and each of his kingdom's")
 		adds.pause()
-		print("            inhabitants' lives. The Dragon King noticed the deed of his servant and promoted him to Deputy, and then")
+		print("         inhabitants' lives. The Dragon King noticed the deed of his servant and promoted him to Deputy, and then")
 		adds.pause()
-		print("                                     the dragons invaded and fried the kingdom.")
+		print("                                  the dragons invaded and fried the kingdom.")
 		adds.pause()
-		print("                                               *sad trombone*")
+		print("                                            *sad trombone*")
 	elif (ending == "good"):
 		adds.pause()
-		print("            After vanquishing the Dragon King, you return to the kingdom. The monarch is pleased, for there would be")
+		print("         After vanquishing the Dragon King, you return to the kingdom. The monarch is pleased, for there would be")
 		adds.pause()
-		print("                                        no more people being spontaneously eaten.")
+		print("                                     no more people being spontaneously eaten.")
 	print()
-	print("Would you like to try again? (y or n)")
-	option = adds.getch()
-	if (option == 'y'):
-		choicelog = [0,0,0,0]
-		sword = 0
-		shield = 0
-		scroll = 0
-		energy = 5
-	else:
-		raise SystemExit
+	raise SystemExit
 def draw(obj):
 	if (obj == "sword"):
 		print("   /\\")

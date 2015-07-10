@@ -1,0 +1,2 @@
+import DragonRealm
+DragonRealm.beginMain()
