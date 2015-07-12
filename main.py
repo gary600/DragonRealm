@@ -1,2 +1,2 @@
 import DragonRealm
-DragonRealm.beginMain()
+DragonRealm.main()

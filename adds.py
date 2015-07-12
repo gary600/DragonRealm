@@ -1,8 +1,10 @@
 import os
+import sys
+import time
 #Getch() Import
 # Getch for Linux, processes the key inputs
 # by louis on StackOverflow
-import time
+
 def _find_getch():
     try:
         import termios
