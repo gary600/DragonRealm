@@ -1,4 +1,4 @@
-import random
+﻿import random
 import os
 import pickle
 import graphics
@@ -13,10 +13,13 @@ global pathChooseDescripts
 global nums
 global cursed
 global cursetimer
+global meteors
+global meteortimer
 pathChooseDescripts = ["You walk along the road, occasionally looking through the plants, ","You walk around the dead trees, the dry grass crunching under you feet. You look under a log, ","You walk toward the mountain. At the bottom, there is a small cave. You look in the cave, ","You walk up the hill. At the top, you look around, and see a big hole in the hill. You look inside, ","You walk into the trees, wandering through the darkness until you find a clearing, ","You walk through the swamp, occasionally stepping in puddles. You look behind a rock, ","You climb up the rocks, sometimes tripping over loose pebbles. You look behind a boulder, "]
 pathdescripts = ["is green and lush with a small road.","has brown, dry grass littered with fallen trees.","leads toward a mountain that towers over the clouds.","leads toward a small hill in the distance.","wanders aimlessy through trees. The light fades as the trees grow thicker.","is hard to see as it is on very swampy ground and there are lots of big puddles that obscure the way.","is very rocky and there are points where you would have to scramble over boulders the size of a horse to find the next part."]
 nums = ['1','2','3','4','5','6','7','8','9','0']
-chances = [1,1,1,1,1,1,1,2,2,2,3]
+chances = [1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,3,4]
+meteorchances = [1,1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3]
 chestchances = [1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,4]
 choicelog = [0,0,0,0]
 
@@ -26,7 +29,9 @@ shield = False
 scroll = False
 energy = 3
 cursed = False
+meteors = False
 cursetimer = 0
+meteortimer = 0
 def askPath():
 	global sword
 	global shield
@@ -82,11 +87,16 @@ def findTreasure(n):
 	global energy
 	global pathChooseDescripts
 	global cursed
+	global meteors
+	global meteorchances
 	print(pathChooseDescripts[n])
 	print()
 	adds.pause()
 	adds.pause()
-	out = random.choice(chances)
+	if meteors == True:
+		out = random.choice(meteorchances)
+	else:
+		out = random.choice(chances)
 	if (out == 1):
 		print("but nothing is there.")
 		energy = energy + 1
@@ -135,6 +145,12 @@ def findTreasure(n):
 		elif (sword == 1) and (shield == 1):
 			print("Since you have a sword and a shield, you were able to slay the dragon no problem. It only made you a little tired.")
 			energy = energy - 3
+	elif (out == 4):
+		meteors = True
+		print("and you hear a noise.")
+		print("Meteors are falling!!!")
+		graphics.draw("meteor")
+		print("Dragons appear much more often for 10 turns.")
 	print("Press any key to continue.")
 	y=adds.getch()
 def kingDragon(n):
@@ -179,6 +195,8 @@ def main():
 	global nums
 	global cursed
 	global cursetimer
+	global meteors
+	global meteortimer
 	graphics.showIntro()
 	print("Press any key to continue.")
 	y = adds.getch()
@@ -197,10 +215,17 @@ def main():
 				graphics.draw("scroll")
 			if (cursed == True):
 				print("You are cursed!!!")
-				energy = energy - 1
+				energy = energy - 2
 				cursetimer = cursetimer + 1
 				if cursetimer == 5:
 					cursed = False
+					cursetimer = 0
+			if (meteors == True):
+				print("Meteors are falling!!!")
+				meteortimer = meteortimer + 1
+				if meteortimer == 10:
+					meteors = False
+					meteortimer = 0
 			print("You have",energy,"energy.")
 			if (energy <= 0):
 				print("You drop dead of exhaustion.")
@@ -211,7 +236,7 @@ def main():
 			choicelog[1] = choicelog[2]
 			choicelog[2] = choicelog[3]
 			choicelog[3] = path[0]
-			print(choicelog)
+
 			if (choicelog == [1,2,4,3]) and (scroll == 1):
 				kingDragon(path[1])
 			findTreasure(path[1])
