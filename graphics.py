@@ -131,14 +131,14 @@ def showEnd(ending):
 		print("                                  the dragons invaded and fried the kingdom.")
 		adds.pause()
 		print("                                            *sad trombone*")
+		print("Press any key to exit")
+		adds.getch()
 	elif (ending == "good"):
 		adds.pause()
 		print("         After vanquishing the Dragon King, you return to the kingdom. The monarch is pleased, for there would be")
 		adds.pause()
 		print("                                     no more people being spontaneously eaten.")
 		rollCredits()
-	print("Press any key to exit")
-	adds.getch()
 	raise SystemExit
 def draw(obj):
 	if (obj == "sword"):
@@ -300,7 +300,11 @@ def rollCredits():
 	print("	Ghost: jgs on retrojunkie.com")
 	adds.pause()
 	print("	ASCII Bubble Text: Alpha and CyberMedium fonts on patorjk.com/software/taag")
-	
+	adds.pause()
+	print("	Meteor: Zeth Stolen")
+	print()
+	print("Press any key to exit")
+	adds.getch()
 	
 	
 	
