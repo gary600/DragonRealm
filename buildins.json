@@ -1,0 +1,11 @@
+{
+    "buildData": {
+        "buildFile": "main.py",
+        "options": {},
+        "name": "DragonRealm",
+        "base": null,
+        "description": "A simple ASCII adventure game in Python",
+        "version": "1.2"
+    },
+    "doExecute": true
+}

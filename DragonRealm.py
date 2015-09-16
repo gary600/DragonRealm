@@ -15,6 +15,8 @@ global cursed
 global cursetimer
 global meteors
 global meteortimer
+global dragonTurn
+global cursedTurn
 pathChooseDescripts = ["You walk along the road, occasionally looking through the plants, ","You walk around the dead trees, the dry grass crunching under you feet. You look under a log, ","You walk toward the mountain. At the bottom, there is a small cave. You look in the cave, ","You walk up the hill. At the top, you look around, and see a big hole in the hill. You look inside, ","You walk into the trees, wandering through the darkness until you find a clearing, ","You walk through the swamp, occasionally stepping in puddles. You look behind a rock, ","You climb up the rocks, sometimes tripping over loose pebbles. You look behind a boulder, "]
 pathdescripts = ["is green and lush with a small road.","has brown, dry grass littered with fallen trees.","leads toward a mountain that towers over the clouds.","leads toward a small hill in the distance.","wanders aimlessy through trees. The light fades as the trees grow thicker.","is hard to see as it is on very swampy ground and there are lots of big puddles that obscure the way.","is very rocky and there are points where you would have to scramble over boulders the size of a horse to find the next part."]
 nums = ['1','2','3','4','5','6','7','8','9','0']
@@ -23,7 +25,8 @@ meteorchances = [1,1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3]
 chestchances = [1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,4]
 choicelog = [0,0,0,0]
 
-
+dragonTurn = False
+cursedTurn = False
 sword = False
 shield = False
 scroll = False
@@ -71,8 +74,10 @@ def askPath():
 	print()
 	while (True):
 		choice = adds.getch()
+		if type(choice) is bytes:
+			choice = bytes.decode(choice)
 		for i in nums:
-			if bytes.decode(choice) == i:
+			if choice == i:
 				isInNums = True
 				choiceint = int(choice)
 				if choiceint <= paths:
@@ -89,6 +94,8 @@ def findTreasure(n):
 	global cursed
 	global meteors
 	global meteorchances
+	global dragonTurn
+	global cursedTurn
 	print(pathChooseDescripts[n])
 	print()
 	adds.pause()
@@ -105,7 +112,9 @@ def findTreasure(n):
 		graphics.draw("chestclosed")
 		print("Press 'Y' to open, any other key to ignore.")
 		ask = adds.getch()
-		if bytes.decode(ask) == 'y':
+		if type(ask) is bytes:
+			ask = bytes.decode(ask)
+		if ask == 'y':
 			adds.pause()
 			graphics.draw("chestopen")
 			chest = random.choice(chestchances)
@@ -128,7 +137,7 @@ def findTreasure(n):
 				print("When you open the chest, a ghost comes out!")
 				graphics.draw("ghost")
 				print("You have been cursed! You lost 5 energy, and you will lose 2 energy every turn for 5 turns")
-	elif (out == 3):
+	elif (out == 3) and (dragonTurn == True):
 		print("and a dragon comes out!")
 		graphics.draw("dragon")
 		adds.pause()
@@ -145,6 +154,10 @@ def findTreasure(n):
 		elif (sword == 1) and (shield == 1):
 			print("Since you have a sword and a shield, you were able to slay the dragon no problem. It only made you a little tired.")
 			energy = energy - 3
+	elif (out == 3) and (dragonTurn == False):
+		dragonTurn == True
+		print("But nothing is there.")
+		energy = energy+1
 	elif (out == 4):
 		meteors = True
 		print("and you hear a noise.")
@@ -168,7 +181,9 @@ def kingDragon(n):
 	adds.pause()
 	print("Press 'Y' to go in, any other key to bail.")
 	y=adds.getch()
-	if bytes.decode(y)=='y':
+	if type(y) is bytes:
+		y = bytes.decode(y)
+	if y=='y':
 		adds.clear()
 		print("You enter the cave slowly, and you see a dark silhouette")
 		adds.pause()
@@ -197,6 +212,7 @@ def main():
 	global cursetimer
 	global meteors
 	global meteortimer
+	global cursedTurn
 	graphics.showIntro()
 	print("Press any key to continue.")
 	y = adds.getch()
@@ -215,7 +231,10 @@ def main():
 				graphics.draw("scroll")
 			if (cursed == True):
 				print("You are cursed!!!")
-				energy = energy - 2
+				if cursedTurn == True:
+					energy = energy - 2
+				else:
+					cursedTurn == True
 				cursetimer = cursetimer + 1
 				if cursetimer == 5:
 					cursed = False
