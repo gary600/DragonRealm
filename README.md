@@ -16,4 +16,4 @@ You can either run it from the source or compile and install it.
         * If you want to get an executable .app package: "python3 build.py bdist_mac"
         * If you want a DMG image containing the .app package: "python3 build.py bdist_dmg"
 * On Linux:
-    If you are running linux, I think that you probably already know how to do this.
+    If you are running linux, run it from source or use the [cx_Freeze](http://cx-freeze.sourceforge.net/) setup script.
