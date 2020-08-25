@@ -1,5 +1,11 @@
 # DragonRealm
-A little ASCII adventure game in Python<br />
+This is a game that I made when I was just learning to program in Python.  
+The coding style is absolutely horrendous (global variables, eww!), so I would highly
+discourage anyone from trying to learn anything from the code. That being said,
+I'm keeping it here as it is the first remotely complex program I ever wrote.
+
+# Original README.md from 2015
+A little ASCII adventure game in Python  
 This is a little experiment to try to make a cool adventure game in Python.
 Currently, branch 1.1.0 is under development. Branches 1.0.* are fully functional (but identical)
 ## Installation
